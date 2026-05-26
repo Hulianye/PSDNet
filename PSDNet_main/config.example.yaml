@@ -1,0 +1,33 @@
+paths:
+  train_pkl: "data/BNCI2014001.pkl"
+  test_pkl: "data/BNCI2014004.pkl"
+  output_dir: "outputs/psdnet_run"
+
+teacher:
+  band_names: ["delta", "theta", "alpha", "beta", "gamma"]
+  bands_hz:
+    - [1.0, 4.0]
+    - [4.0, 8.0]
+    - [8.0, 13.0]
+    - [13.0, 30.0]
+    - [30.0, 45.0]
+  welch_nperseg: 256
+  log_psd: true
+  psd_eps: 1.0e-12
+
+data:
+  center_input: true
+  time_points: null
+  val_ratio: 0.2
+
+model:
+  hidden_dim: 64
+  dropout: 0.1
+
+training:
+  batch_size: 64
+  epochs: 20
+  lr: 0.001
+  weight_decay: 0.0001
+  num_workers: 0
+  seed: 42

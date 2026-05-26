@@ -1,0 +1,43 @@
+paths:
+  dataset_pkl: "data/BNCI2014001.pkl"
+  output_dir: "outputs/BNCI2014001"
+
+split:
+  seed: 42
+  train_ratio: 0.8
+  val_ratio: 0.1
+  test_ratio: 0.1
+
+teacher:
+  band_names: ["delta", "theta", "alpha", "beta", "gamma"]
+  bands_hz:
+    - [1.0, 4.0]
+    - [4.0, 8.0]
+    - [8.0, 13.0]
+    - [13.0, 30.0]
+    - [30.0, 45.0]
+  welch_nperseg: 256
+  log_psd: false
+  psd_eps: 1.0e-12
+  target_mode: "absolute"
+  target_space: "log_train_linear_eval"
+
+data:
+  center_input: true
+  time_points: null
+
+psd_training:
+  batch_size: 64
+  epochs: 20
+  lr: 0.001
+  weight_decay: 0.0001
+  hidden_dim: 64
+  dropout: 0.1
+  num_segments: 8
+  loss_type: "mse"
+  band_loss_weights: "1,1,1,1,1"
+
+speed_benchmark:
+  num_samples_list: [260]
+  batch_sizes: [512]
+  warmup_batches: 3
